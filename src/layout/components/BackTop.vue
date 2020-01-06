@@ -1,5 +1,7 @@
 <template>
-  <div class="">测试1</div>
+  <BackTop :target="getTarget" :bottom="70" :right="50" class-name="h-backtop-custom">
+    <i class="iconfont icon-rocket-fill" />
+  </BackTop>
 </template>
 
 <script>
@@ -37,10 +39,29 @@ export default {
   // 方法集合
   methods: {
 
+    getTarget() {
+      return document.querySelector('.app-main');
+    }
   } // 如果页面有keep-alive缓存功能，这个函数会触发
 }
 </script>
-<style lang='less' scoped>
+<style lang='less'>
 //@import url(); 引入公共css类
+.h-backtop-custom{
+    user-select: none;
+  .h-backtop-inner {
+    background-color: @primary-color;
 
+    border-radius: 2px;
+    color: @white-color;
+    padding: 5px 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    transition: all @transition-time ease-in-out;
+    opacity: .5;
+    &:hover {
+        opacity: 1;
+    //   background-color: lighten(@primary-color, 10%);
+    }
+  }
+}
 </style>

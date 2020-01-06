@@ -1,71 +1,75 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 /* Layout */
-import Layout from "@/components/layout";
+import Layout from '@/layout';
 
 export const constantRoutes = [
-         {
-           path: "/login",
-           name: "Login",
-           component: () => import("@/views/login/index"),
-           hidden: true
-         },
-         {
-           path: "/",
-           component: Layout,
-           redirect: "/dashboard",
-           meta: {
-             // access: ['home']
-           },
-           children: [
-             {
-               path: "dashboard",
-               name: "Dashboard",
-               component: () => import("@/views/dashboard/index"),
-               meta: {
-                 title: "首页",
-                 icon: "icon_sy",
-                 affix: true
-                 // access: ['home']
-               }
-             }
-           ]
-         },
-         {
-           path: "/test",
-           name: "Test",
-           component: Layout,
-           meta: {
-             title: "测试",
-             icon: "icon_sy"
-             // access: ['home']
-           },
-           children: [
-             {
-               path: "one",
-               name: "TestOne",
-               component: () => import("@/views/test/one"),
-               meta: {
-                 title: "测试1",
-                 icon: "icon_sy"
-                 // access: ['home']
-               }
-             },
-             {
-               path: "two",
-               name: "TestTwo",
-               component: () => import("@/views/test/one"),
-               meta: {
-                 title: "测试2",
-                 icon: "icon_sy"
-                 // access: ['home']
-               }
-             }
-           ]
-         }
-       ];
+  {
+    path: '/login',
+    name: 'Login',
+    component: resolve => require(['@/views/login/index'], resolve),
+    hidden: true
+  },
+  {
+    path: '/refresh',
+    name: 'Refresh',
+    component: resolve => require(['@/views/error/refresh'], resolve),
+    hidden: true
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    meta: {
+      // access: ['home']
+    },
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: resolve => require(['@/views/dashboard/index'], resolve),
+        meta: {
+          title: 'menu.dashboard',
+          icon: 'iconfont icon-dashboard',
+          affix: true
+          // access: ['home']
+        }
+      }
+    ]
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Layout,
+    meta: {
+      title: 'menu.test',
+      icon: 'iconfont icon-icon-test'
+      // access: ['home']
+    },
+    children: [
+      {
+        path: 'one',
+        name: 'TestOne',
+        component: resolve => require(['@/views/test/one'], resolve),
+        meta: {
+          title: 'menu.test'
+          // access: ['home']
+        }
+      },
+      {
+        path: 'two',
+        name: 'TestTwo',
+        component: resolve => require(['@/views/test/one'], resolve),
+        meta: {
+          title: 'menu.test'
+          // access: ['home']
+        }
+      }
+    ]
+  }
+];
 
 const createRouter = () =>
   new VueRouter({
@@ -83,8 +87,5 @@ export function resetRouter() {
   const newRouter = createRouter();
   router.matcher = newRouter.matcher; // reset router
 }
-
-
-
 
 export default router;

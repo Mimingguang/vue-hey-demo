@@ -1,0 +1,19 @@
+{
+  "common": {
+    "title": "Title",
+    "year": "Year",
+    "more": "More"
+  },
+  "header": {
+    "zhoren": "中文"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "test": "Test"
+  },
+  "chart": {
+    "bar": "BarChart",
+    "radar": "RadarChart",
+    "line": "LineCHart"
+  }
+}

@@ -1,28 +1,29 @@
-# vue
+# test
 
-> A HeyUI project
-
-## Build Setup
-
-``` bash
-# install dependencies
+## Project setup
+```
 npm install
-
-# serve with hot reload at localhost:9008
-hey dev
-
-# build for production with minification
-hey build
 ```
 
-For detailed explanation on how things work, consult the [docs for hey-cli](https://github.com/heyui/hey-cli).
-
-
-## Notice
-HeyUI project use global less setting in *hey.js*, you can use those vars in any *vue* file or *less* file.
-
+### Compiles and hot-reloads for development
 ```
-globalVars: './src/css/var.less'
+npm run serve
 ```
 
-For detailed using you can see App.vue file.
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

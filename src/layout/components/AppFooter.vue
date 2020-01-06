@@ -1,5 +1,7 @@
 <template>
-  <div class="">测试1</div>
+  <div class="app-footer">
+    <center class="dark3-color">xxx</center>
+  </div>
 </template>
 
 <script>
@@ -42,5 +44,7 @@ export default {
 </script>
 <style lang='less' scoped>
 //@import url(); 引入公共css类
-
+.app-footer{
+    line-height: 30px;
+}
 </style>
