@@ -109,6 +109,7 @@ export default {
     .app-header-dropdown{
       cursor: pointer;
       user-select: none;
+      margin-right: 20px;
     }
     .btns,.btns i{
       font-size: 13px;
