@@ -4,7 +4,7 @@
       ref="menu"
       :datas="routes"
       :active-all="activeAll"
-      :class-name="theme"
+      :class-name="`h-menu-${isSun?'white':'dark'}`"
       :inline-collapsed="sidebar.opened"
       :accordion="accordion"
       @select="triggerSelect"
@@ -25,14 +25,13 @@ export default {
   data() {
     // 这里存放数据
     return {
-      theme: 'h-menu-white', // h-menu-dark, h-menu-white
       accordion: true, // 是否启动手风琴模式
       activeAll: false
     }
   },
   // 监听属性 类似于data概念
   computed: {
-    ...mapGetters(['sidebar']),
+    ...mapGetters(['sidebar', 'isSun']),
     routes() {
       return getMenuByRouter(constantRoutes, [])
     }

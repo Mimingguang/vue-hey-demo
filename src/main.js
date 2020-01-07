@@ -4,6 +4,7 @@ import HeyUI from 'heyui'
 import store from './store'
 import { i18n } from './assets/languages/index'
 import './assets/css/index.less'
+import './assets/css/dark.less'
 import './assets/icons/iconfont.css'
 
 import { mockXHR } from '../mock'

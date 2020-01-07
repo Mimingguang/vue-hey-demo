@@ -2,10 +2,11 @@
   <div class="nav-bar">
     <i
       v-font="18"
-      :class="iconClass"
+      :class="leftIconClass"
       class="iconfont inline-collapsed text-hover"
       @click="toggleClick"
     />
+    <i v-font="18" class="iconfont icon-reload" />
     <section class="float-right app-header-info">
       <DropdownMenu
         class-name="app-header-dropdown float-right"
@@ -19,9 +20,24 @@
         <Avatar :src="src" :width="30"><span>xxxxx</span></Avatar>
       </DropdownMenu>
       <ButtonGroup size="s" class="btns">
-        <Button text-color="primary" icon="iconfont icon-github-fill" @click="goGitHub" />
-        <Button text-color="primary" icon="iconfont icon-wechat-fill" @click="wechatShow = true" />
-        <Button text-color="primary" @click="changeLanguage">{{ $t('header.zhoren') }}</Button>
+        <Button
+          text-color="primary"
+          icon="iconfont icon-github-fill"
+          @click="goGitHub"
+        />
+        <Button
+          text-color="primary"
+          icon="iconfont icon-wechat-fill"
+          @click="wechatShow = true"
+        />
+        <Button text-color="primary" @click="changeLanguage">{{
+          $t("header.zhoren")
+        }}</Button>
+        <Button
+          text-color="primary"
+          :icon="'iconfont ' + rightIconClass"
+          @click="changeTheme"
+        />
       </ButtonGroup>
       <Modal v-model="wechatShow" middle>
         <div slot="header">Wechat</div>
@@ -54,12 +70,15 @@ export default {
   },
   // 监听属性 类似于data概念
   computed: {
-    ...mapGetters(['sidebar']),
-    iconClass() {
+    ...mapGetters(['sidebar', 'isSun']),
+    leftIconClass() {
       return {
         'icon-unorderedlist': !this.sidebar.opened,
         'icon-menu': this.sidebar.opened
       };
+    },
+    rightIconClass() {
+      return !this.isSun ? 'icon-yangguang' : 'icon-shuimian'
     }
   },
   // 监控data中的数据变化
@@ -94,6 +113,10 @@ export default {
     },
     goGitHub() {
       window.open('https://github.com/Mimingguang/vue-hey-demo/issues', '_blank')
+    },
+    changeTheme() {
+      // color 传入颜色值
+      this.$store.dispatch('app/toggleIsSun', !this.isSun)
     }
   } // 如果页面有keep-alive缓存功能，这个函数会触发
 };
@@ -104,14 +127,15 @@ export default {
   .inline-collapsed {
     padding: 10px 20px;
   }
-  .app-header-info{
+  .app-header-info {
     margin-right: 20px;
-    .app-header-dropdown{
+    .app-header-dropdown {
       cursor: pointer;
       user-select: none;
       margin-right: 20px;
     }
-    .btns,.btns i{
+    .btns,
+    .btns i {
       font-size: 13px;
     }
   }

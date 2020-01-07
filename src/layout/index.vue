@@ -5,12 +5,12 @@
     :sider-fixed="siderFixed"
     :sider-collapsed="siderCollapsed"
   >
-    <Sider theme="white" class="sider-container">
+    <Sider :theme="theme" class="sider-container">
       <app-logo />
-      <app-sider />
+      <app-sider :is-sun="isSun" />
     </Sider>
     <Layout :header-fixed="headerFixed">
-      <HHeader theme="white">
+      <HHeader :theme="theme">
         <nav-bar @toggleClick="toggleSideBar" />
       </HHeader>
       <Content class="app-warp">
@@ -49,7 +49,7 @@ export default {
   },
   // 监听属性 类似于data概念
   computed: {
-    ...mapGetters(['sidebar']),
+    ...mapGetters(['sidebar', 'isSun']),
     device() {
       return this.$store.state.app.device
     },
@@ -61,6 +61,9 @@ export default {
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
       }
+    },
+    theme() {
+      return this.isSun ? 'white' : 'dark'
     }
   },
   // 监控data中的数据变化
