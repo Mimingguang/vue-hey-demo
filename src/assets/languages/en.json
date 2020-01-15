@@ -9,6 +9,7 @@
   },
   "menu": {
     "dashboard": "Dashboard",
+    "visualization":"Visualization",
     "test": "Test"
   },
   "chart": {

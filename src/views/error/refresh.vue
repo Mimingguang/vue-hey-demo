@@ -16,7 +16,12 @@ export default {
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
-  watch: {},
+  watch: {
+    $route(to, from) {
+      console.log(to)
+      this.$router.replace(from.fullPath)
+    }
+  },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
@@ -29,12 +34,7 @@ export default {
   destroyed() {}, // 生命周期 - 销毁完成
   activated() {},
   // 方法集合
-  methods: {}, // 如果页面有keep-alive缓存功能，这个函数会触发
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-      vm.$router.replace(from.fullPath);
-    });
-  }
+  methods: {} // 如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style lang="less" scoped>

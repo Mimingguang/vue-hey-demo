@@ -79,8 +79,9 @@ export default {
         }).then(res => {
           console.log(res)
           this.isLoading = false
+          Utils.saveCookie('token', res.data.token)
+
           this.$router.push({ name: 'Dashboard' })
-        //   Cookies.set('token',res.)
         })
       } else {
         this.isLoading = false

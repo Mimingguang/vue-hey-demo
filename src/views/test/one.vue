@@ -1,5 +1,5 @@
 <template>
-  <div class="">测试1</div>
+  <div class="test">测试1</div>
 </template>
 
 <script>
@@ -42,5 +42,7 @@ export default {
 </script>
 <style lang='less' scoped>
 //@import url(); 引入公共css类
-
+.test{
+  height: 200vh;
+}
 </style>

@@ -9,6 +9,7 @@
   },
   "menu": {
     "dashboard": "仪表盘",
+    "visualization":"可视化",
     "test": "测试"
   },
   "chart": {

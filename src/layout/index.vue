@@ -13,15 +13,19 @@
       <HHeader :theme="theme">
         <nav-bar @toggleClick="toggleSideBar" />
       </HHeader>
-      <Content class="app-warp">
+      <Content class="app-warp" :class="isSun?'h-layout-content-white':'h-layout-content-dark'">
         <app-main />
-        <back-top />
+
+        <HFooter>
+          <app-footer />
+        </HFooter>
+
       </Content>
-      <HFooter>
-        <app-footer />
-      </HFooter>
     </Layout>
+    <back-top />
+
   </Layout>
+
 </template>
 
 <script>
@@ -97,7 +101,7 @@ export default {
   }
   .sider-container {
     overflow-x: hidden;
-    box-shadow: 1px 1px 10px rgba(200, 200, 200, 0.5);
+    box-shadow: 1px 1px 10px rgba(200, 200, 200, 0.2);
   }
   &.hideSidebar {
     .sider-container {

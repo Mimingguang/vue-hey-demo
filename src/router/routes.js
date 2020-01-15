@@ -1,7 +1,4 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
 
-Vue.use(VueRouter);
 /* Layout */
 import Layout from '@/layout';
 
@@ -29,11 +26,34 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         name: 'Dashboard',
-        component: resolve => require(['@/views/dashboard/index'], resolve),
+        component: resolve =>
+          require(['@/views/dashboard/index'], resolve),
         meta: {
           title: 'menu.dashboard',
           icon: 'iconfont icon-dashboard',
           affix: true
+          // access: ['home']
+        }
+      }
+    ]
+  },
+  {
+    path: '/visualization',
+    name: 'Visualization',
+    component: Layout,
+    meta: {
+      title: 'menu.visualization',
+      icon: 'iconfont icon-keshihua'
+      // access: ['home']
+    },
+    children: [
+      {
+        path: 'echarts',
+        name: 'Echarts',
+        component: resolve =>
+          require(['@/views/visualization/echarts'], resolve),
+        meta: {
+          title: 'Echarts'
           // access: ['home']
         }
       }
@@ -71,21 +91,4 @@ export const constantRoutes = [
   }
 ];
 
-const createRouter = () =>
-  new VueRouter({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({
-      y: 0
-    }),
-    routes: constantRoutes
-  });
-
-const router = createRouter();
-
-// 重置路由
-export function resetRouter() {
-  const newRouter = createRouter();
-  router.matcher = newRouter.matcher; // reset router
-}
-
-export default router;
+export default constantRoutes;

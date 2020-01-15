@@ -2,11 +2,17 @@
  * @Name:
  * @Date: 2019-07-02 09:45:01
  * @LastEditors  : mimingguang
- * @LastEditTime : 2020-01-07 12:54:26
+ * @LastEditTime : 2020-01-15 16:30:14
  */
 'use strict';
+const webpack = require('webpack');
 const path = require('path');
 const defaultSettings = require('./src/settings.js');
+
+const name = defaultSettings.title || 'vue Admin Template'; // page title
+const port = 9102; // dev port
+const IS_PROD = ['production', 'test'].includes(process.env.NODE_ENV);
+
 const resolve = dir => path.join(__dirname, dir);
 const addStyleResource = rule => {
   rule
@@ -16,9 +22,6 @@ const addStyleResource = rule => {
       patterns: [path.resolve(__dirname, './src/assets/css/var.less')]
     });
 };
-const name = defaultSettings.title || 'vue Admin Template'; // page title
-const port = 9012; // dev port
-const IS_PROD = ['production', 'test'].includes(process.env.NODE_ENV);
 
 module.exports = {
   // 补全文件路径
@@ -42,8 +45,8 @@ module.exports = {
     },
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        target: `${process.env.VUE_APP_BASE_URL}`,
-        // target: `http://localhost:${port}/mock`,
+        // target: `${process.env.VUE_APP_BASE_URL}`,
+        target: `http://localhost:${port}/mock`,
         changeOrigin: true
         // 是否需要显示代理字段
         // pathRewrite: {
@@ -57,11 +60,16 @@ module.exports = {
     name: name,
     resolve: {
       alias: {
-        '@': resolve('src'),
-        components: resolve('src/components')
+        '@': path.resolve(__dirname, 'src'),
+        components: path.resolve(__dirname, 'src/components/')
       }
     },
-    externals: {}
+    plugins: [
+      new webpack.ProvidePlugin({
+        Utils: [path.resolve(__dirname, 'src/utils/util'), 'default'],
+        HeyUI: 'heyui'
+      })
+    ]
   },
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];

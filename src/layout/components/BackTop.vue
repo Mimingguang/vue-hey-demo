@@ -40,7 +40,7 @@ export default {
   methods: {
 
     getTarget() {
-      return document.querySelector('.app-main');
+      return document.querySelector('.app-warp');
     }
   } // 如果页面有keep-alive缓存功能，这个函数会触发
 }

@@ -3912,6 +3912,13 @@
       "unicode_decimal": 59872
     },
     {
+      "icon_id": "6884427",
+      "name": "可视化",
+      "font_class": "keshihua",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
       "icon_id": "7119846",
       "name": "首页",
       "font_class": "shouye",
@@ -4542,6 +4549,13 @@
       "unicode_decimal": 59297
     },
     {
+      "icon_id": "7606204",
+      "name": "数据可视化",
+      "font_class": "shujukeshihua",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
       "icon_id": "7834345",
       "name": "plus",
       "font_class": "plus",
@@ -5044,6 +5058,13 @@
       "font_class": "icon_English",
       "unicode": "e661",
       "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "11810454",
+      "name": "可视化",
+      "font_class": "keshihua1",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
     }
   ]
 }

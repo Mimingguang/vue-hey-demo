@@ -1,6 +1,9 @@
 <template>
   <div class="app-footer">
-    <center class="dark3-color">xxx</center>
+    <center class="footer-container dark3-color">
+
+      Copyright © 2020 Mimingguang · <i class="h-icon-github" @click="goGitHub" /> ·
+    </center>
   </div>
 </template>
 
@@ -38,7 +41,9 @@ export default {
   activated() {},
   // 方法集合
   methods: {
-
+    goGitHub() {
+      window.open('https://github.com/Mimingguang/vue-hey-demo/issues', '_blank')
+    }
   } // 如果页面有keep-alive缓存功能，这个函数会触发
 }
 </script>
@@ -46,5 +51,11 @@ export default {
 //@import url(); 引入公共css类
 .app-footer{
     line-height: 30px;
+    .footer-container{
+      padding: 10px 0 30px;
+    i{
+      cursor: pointer;
+    }
+    }
 }
 </style>

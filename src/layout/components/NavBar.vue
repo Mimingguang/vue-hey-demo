@@ -6,10 +6,10 @@
       class="iconfont inline-collapsed text-hover"
       @click="toggleClick"
     />
-    <i v-font="18" class="iconfont icon-reload" />
+    <i v-font="18" class="iconfont icon-reload refresh" />
     <section class="float-right app-header-info">
       <DropdownMenu
-        class-name="app-header-dropdown float-right"
+        class-name="app-header-dropdown"
         trigger="click"
         offset="0,5"
         :width="150"
@@ -30,7 +30,7 @@
           icon="iconfont icon-wechat-fill"
           @click="wechatShow = true"
         />
-        <Button text-color="primary" @click="changeLanguage">{{
+        <Button v-width="60" text-color="primary" @click="changeLanguage">{{
           $t("header.zhoren")
         }}</Button>
         <Button
@@ -52,7 +52,6 @@
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
 import { mapGetters } from 'vuex';
-import Utils from '@/utils/util'
 export default {
   name: 'NavBar',
   // import引入的组件需要注入到对象中才能使用
@@ -101,7 +100,8 @@ export default {
     },
     trigger(data) {
       if (data === 'logout') {
-        Utils.removeLocal('token');
+        Utils.removeCookie('token');
+        console.log(Utils)
         this.$router.replace({ name: 'Login' });
       } else {
         this.$router.push({ name: 'AccountBasic' });
@@ -126,6 +126,15 @@ export default {
 .nav-bar {
   .inline-collapsed {
     padding: 10px 20px;
+  }
+  .refresh{
+    cursor: pointer;
+    display: inline-block;
+    transform:rotate(0deg);
+    animation: 5ms all ease;
+    &:hover{
+      transform:rotate(359deg);
+    }
   }
   .app-header-info {
     margin-right: 20px;

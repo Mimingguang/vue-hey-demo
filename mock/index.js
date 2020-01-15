@@ -1,55 +1,50 @@
-import Mock from 'mockjs';
-import { param2Obj } from '../src/utils';
+import Mock from 'mockjs'
+import { param2Obj } from '../src/utils'
 
-import user from './user.js';
-const mocks = [...user];
+import user from './user'
+
+const mocks = [
+  ...user
+]
 
 // for front mock
 // please use it cautiously, it will redefine XMLHttpRequest,
 // which will cause many of your third-party libraries to be invalidated(like progress event).
 export function mockXHR() {
-  // 延时200-600毫秒请求到数据
-  Mock.setup({
-    timeout: '200-600'
-  });
   // mock patch
   // https://github.com/nuysoft/Mock/issues/300
-  Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send;
-  Mock.XHR.prototype.send = () => {
+  Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send
+  Mock.XHR.prototype.send = function() {
     if (this.custom.xhr) {
-      this.custom.xhr.withCredentials = this.withCredentials || false;
+      this.custom.xhr.withCredentials = this.withCredentials || false
 
       if (this.responseType) {
-        this.custom.xhr.responseType = this.responseType;
+        this.custom.xhr.responseType = this.responseType
       }
     }
-    this.proxy_send(...arguments);
-  };
+    this.proxy_send(...arguments)
+  }
 
-  const XHR2ExpressReqWrap = (respond) => {
+  function XHR2ExpressReqWrap(respond) {
     return function(options) {
-      let result = null;
+      let result = null
       if (respond instanceof Function) {
-        const { body, type, url } = options;
+        const { body, type, url } = options
         // https://expressjs.com/en/4x/api.html#req
         result = respond({
           method: type,
           body: JSON.parse(body),
           query: param2Obj(url)
-        });
+        })
       } else {
-        result = respond;
+        result = respond
       }
-      return Mock.mock(result);
-    };
+      return Mock.mock(result)
+    }
   }
 
   for (const i of mocks) {
-    Mock.mock(
-      new RegExp(i.url),
-      i.type || 'get',
-      XHR2ExpressReqWrap(i.response)
-    );
+    Mock.mock(new RegExp(i.url), i.type || 'get', XHR2ExpressReqWrap(i.response))
   }
 }
 
@@ -59,13 +54,11 @@ const responseFake = (url, type, respond) => {
     url: new RegExp(`/mock${url}`),
     type: type || 'get',
     response(req, res) {
-      res.json(
-        Mock.mock(respond instanceof Function ? respond(req, res) : respond)
-      );
+      res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
     }
-  };
-};
+  }
+}
 
 export default mocks.map(route => {
-  return responseFake(route.url, route.type, route.response);
-});
+  return responseFake(route.url, route.type, route.response)
+})

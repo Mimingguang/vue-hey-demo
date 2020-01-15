@@ -27,7 +27,7 @@ export default {
 //@import url(); 引入公共css类
 .app-main{
     padding: 20px 20px 0;
-    height: ~"calc(100% - 20px)";
-    overflow: auto;
+    min-height: ~"calc(100% - 90px)";
+    // overflow: auto;
 }
 </style>
