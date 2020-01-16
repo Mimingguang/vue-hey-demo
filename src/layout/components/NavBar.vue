@@ -1,12 +1,18 @@
 <template>
   <div class="nav-bar">
-    <i
-      v-font="18"
-      :class="leftIconClass"
-      class="iconfont inline-collapsed text-hover"
-      @click="toggleClick"
-    />
-    <i v-font="18" class="iconfont icon-reload refresh" />
+    <div class="btn-left float-left">
+      <i
+        v-font="18"
+        :class="leftIconClass"
+        class="iconfont text-hover"
+        @click="toggleClick"
+      />
+      <i
+        v-font="18"
+        class="iconfont icon-reload text-hover"
+        @click="reloadClick"
+      />
+    </div>
     <section class="float-right app-header-info">
       <DropdownMenu
         class-name="app-header-dropdown"
@@ -17,7 +23,10 @@
         :datas="infoMenu"
         @onclick="trigger"
       >
-        <Avatar :src="src" :width="30"><span>{{ userName }}</span></Avatar>
+        <Avatar
+          :src="src"
+          :width="30"
+        ><span>{{ userName }}</span></Avatar>
       </DropdownMenu>
       <ButtonGroup size="s" class="btns">
         <Button
@@ -54,13 +63,16 @@
 import { mapGetters } from 'vuex';
 export default {
   name: 'NavBar',
+  inject: ['reload'], // 注入App里的reload方法
   // import引入的组件需要注入到对象中才能使用
   components: {},
   data() {
     // 这里存放数据
     return {
       userName: Utils.getCookie('userName'),
-      src: Utils.getCookie('userImg') || require('@/assets/images/icon_avatar.png'),
+      src:
+        Utils.getCookie('userImg') ||
+        require('@/assets/images/icon_avatar.png'),
       infoMenu: [
         { key: 'info', title: '个人信息', icon: 'h-icon-user' },
         { key: 'logout', title: '退出登录', icon: 'h-icon-outbox' }
@@ -78,7 +90,7 @@ export default {
       };
     },
     rightIconClass() {
-      return !this.isSun ? 'icon-yangguang' : 'icon-shuimian'
+      return !this.isSun ? 'icon-yangguang' : 'icon-shuimian';
     }
   },
   // 监控data中的数据变化
@@ -99,24 +111,38 @@ export default {
     toggleClick() {
       this.$emit('toggleClick');
     },
+    reloadClick() {
+      this.reload();
+    },
     trigger(data) {
       if (data === 'logout') {
         Utils.removeCookie('token');
-        this.$router.replace({ name: 'Login' });
+        this.$router.replace({
+          name: 'Login',
+          query: {
+            redirect: this.$route.fullPath
+          }
+        });
       } else {
         this.$router.push({ name: 'AccountBasic' });
       }
     },
     changeLanguage() {
-      this.$store.dispatch('app/toggleLanguages', this.$i18n.locale === 'en' ? 'zh' : 'en')
+      this.$store.dispatch(
+        'app/toggleLanguages',
+        this.$i18n.locale === 'en' ? 'zh' : 'en'
+      );
       this.$i18n.locale = this.$store.getters.languages;
     },
     goGitHub() {
-      window.open('https://github.com/Mimingguang/vue-hey-demo/issues', '_blank')
+      window.open(
+        'https://github.com/Mimingguang/vue-hey-demo/issues',
+        '_blank'
+      );
     },
     changeTheme() {
       // color 传入颜色值
-      this.$store.dispatch('app/toggleIsSun', !this.isSun)
+      this.$store.dispatch('app/toggleIsSun', !this.isSun);
     }
   } // 如果页面有keep-alive缓存功能，这个函数会触发
 };
@@ -124,18 +150,21 @@ export default {
 <style lang="less">
 //@import url(); 引入公共css类
 .nav-bar {
-  .inline-collapsed {
-    padding: 10px 20px;
-  }
-  .refresh{
-    cursor: pointer;
-    display: inline-block;
-    transform:rotate(0deg);
-    animation: 5ms all ease;
-    &:hover{
-      transform:rotate(359deg);
+  .btn-left {
+      margin-left: 20px;
+
+    i{
+      cursor: pointer;
+      padding: 0 10px;
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: all 0.3s ease-in-out 0.1s;
+      &:hover {
+        transform: rotate(180deg);
+      }
     }
   }
+
   .app-header-info {
     margin-right: 20px;
     .app-header-dropdown {

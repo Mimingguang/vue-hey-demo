@@ -49,13 +49,31 @@ export default {
       },
       validationRules: {
         required: ['name', 'password']
-      }
+      },
+      redirect: undefined
     }
   },
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
-  watch: {},
+  watch: {
+    $route: {
+      handler: function(route) {
+        if (route.query && route.query.redirect) {
+          this.redirect = ''
+          for (const key in route.query) {
+            if (key === 'redirect') {
+              this.redirect += `${route.query[key]}&`
+            } else {
+              this.redirect += `${key}=${route.query[key]}&`
+            }
+          }
+        }
+        this.redirect = this.redirect.substring(0, this.redirect.length - 1)
+      },
+      immediate: true
+    }
+  },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
@@ -77,12 +95,11 @@ export default {
           username: this.model.name,
           password: this.model.password
         }).then(res => {
-          console.log(res)
           this.isLoading = false
           Utils.saveCookie('token', res.data.token)
           Utils.saveCookie('userName', res.data.userName)
           Utils.saveCookie('userImg', res.data.userImg)
-          this.$router.push({ name: 'Dashboard' })
+          this.$router.push({ path: this.redirect || '/' })
         })
       } else {
         this.isLoading = false

@@ -7,3 +7,10 @@ export function getChartPie(data) {
     data
   });
 }
+export function getChartLine(data) {
+  return http({
+    url: '/chart/line',
+    method: 'post',
+    data
+  });
+}

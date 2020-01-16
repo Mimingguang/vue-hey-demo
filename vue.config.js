@@ -2,7 +2,7 @@
  * @Name:
  * @Date: 2019-07-02 09:45:01
  * @LastEditors  : mimingguang
- * @LastEditTime : 2020-01-15 16:30:14
+ * @LastEditTime : 2020-01-16 14:17:44
  */
 'use strict';
 const webpack = require('webpack');
@@ -37,8 +37,8 @@ module.exports = {
   devServer: {
     port: port,
     open: false,
-    liveReload: true,
-    hot: false,
+    // liveReload: false,
+    // hot: false,
     overlay: {
       warnings: false,
       errors: true

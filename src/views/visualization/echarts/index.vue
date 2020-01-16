@@ -4,7 +4,6 @@
       <template slot="item" slot-scope="{tab}"><span>{{ $t(tab.title) }}</span></template>
     </Tabs>
     <component :is="selected" />
-
   </div>
 </template>
 

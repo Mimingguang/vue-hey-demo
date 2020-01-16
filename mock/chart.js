@@ -1,6 +1,5 @@
 import Mock from 'mockjs';
 export default [
-  // user login
   {
     url: '/chart/pie',
     type: 'post',
@@ -19,4 +18,26 @@ export default [
         data: { ...data }
       };
     }
-  }]
+  },
+  {
+    url: '/chart/line',
+    type: 'post',
+    response: config => {
+      console.log(config)
+      // mock error
+      const data = Mock.mock({
+        xList: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        'list|5-10': [
+          {
+            name: '@cname()',
+            'data|7': ['@integer(0, 1000)']
+          }
+        ]
+      });
+      return {
+        code: 20000,
+        data: { ...data }
+      };
+    }
+  }
+];
