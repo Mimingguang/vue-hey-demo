@@ -1,4 +1,4 @@
-
+import Mock from 'mockjs';
 const tokens = {
   admin: {
     token: 'admin-token'
@@ -42,8 +42,13 @@ export default [
 
       return {
         code: 20000,
-        data: token
-      }
+        data: {
+          userImg: Mock.mock('@dataImage("50x50", "Hey")'),
+          userName: Mock.mock('@first()'),
+          token,
+          userId: Mock.mock('@id()')
+        }
+      };
     }
   },
 

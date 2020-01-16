@@ -17,7 +17,7 @@
         :datas="infoMenu"
         @onclick="trigger"
       >
-        <Avatar :src="src" :width="30"><span>xxxxx</span></Avatar>
+        <Avatar :src="src" :width="30"><span>{{ userName }}</span></Avatar>
       </DropdownMenu>
       <ButtonGroup size="s" class="btns">
         <Button
@@ -59,7 +59,8 @@ export default {
   data() {
     // 这里存放数据
     return {
-      src: require('@/assets/images/icon_avatar.png'),
+      userName: Utils.getCookie('userName'),
+      src: Utils.getCookie('userImg') || require('@/assets/images/icon_avatar.png'),
       infoMenu: [
         { key: 'info', title: '个人信息', icon: 'h-icon-user' },
         { key: 'logout', title: '退出登录', icon: 'h-icon-outbox' }
@@ -101,7 +102,6 @@ export default {
     trigger(data) {
       if (data === 'logout') {
         Utils.removeCookie('token');
-        console.log(Utils)
         this.$router.replace({ name: 'Login' });
       } else {
         this.$router.push({ name: 'AccountBasic' });

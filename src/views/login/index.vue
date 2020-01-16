@@ -80,7 +80,8 @@ export default {
           console.log(res)
           this.isLoading = false
           Utils.saveCookie('token', res.data.token)
-
+          Utils.saveCookie('userName', res.data.userName)
+          Utils.saveCookie('userImg', res.data.userImg)
           this.$router.push({ name: 'Dashboard' })
         })
       } else {

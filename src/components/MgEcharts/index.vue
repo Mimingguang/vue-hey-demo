@@ -2,11 +2,11 @@
  * @Name: 封装echarts
  * @Date: 2020-01-15 13:52:10
  * @LastEditors  : mimingguang
- * @LastEditTime : 2020-01-15 15:17:09
+ * @LastEditTime : 2020-01-15 17:34:49
  -->
 <template>
   <div>
-    <div v-show="isOptionAbnormal" class="shadow">暂无数据</div>
+    <div v-show="isOptionAbnormal&&!isLoading" class="shadow">{{ $t('common.noData') }}</div>
     <div class="oc_echarts_container">
       <div
         :id="randomId"
@@ -14,7 +14,7 @@
         :style="{ visibility: isChartVisible ? 'visible' : 'hidden' }"
       />
     </div>
-    <Loading text="Loading" :loading="isLoading" />
+    <Loading :text="$t('common.loading')" :loading="isLoading" />
   </div>
 </template>
 

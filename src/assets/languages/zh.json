@@ -2,7 +2,9 @@
   "common": {
     "title": "标题",
     "year": "年",
-    "more": "更多"
+    "more": "更多",
+    "noData":"暂无数据",
+    "loading":"加载中..."
   },
   "header": {
     "zhoren": "English"
@@ -15,6 +17,7 @@
   "chart": {
     "bar": "柱状图",
     "radar": "雷达图",
-    "line": "折线图"
+    "line": "折线图",
+    "pie":"饼图"
   }
 }

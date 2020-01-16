@@ -4,6 +4,7 @@ import VueAxios from 'vue-axios';
 import router from '@/router';
 import store from '../store/index';
 import { install, Prototypes, Message } from 'heyui';
+import { Utils } from 'hey-utils';
 // import qs from 'qs';
 Vue.use(VueAxios, axios);
 Vue.use(install, {
@@ -50,7 +51,7 @@ const errorHandle = (status, other) => {
     // 清除token并跳转登录页
     case 403:
       tip('登录过期，请重新登录');
-      localStorage.removeItem('token');
+      Utils.removeCookie('token');
       store.commit('loginSuccess', null);
       setTimeout(() => {
         toLogin();

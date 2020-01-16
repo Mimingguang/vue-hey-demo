@@ -2,7 +2,9 @@
   "common": {
     "title": "Title",
     "year": "Year",
-    "more": "More"
+    "more": "More",
+    "noData":"No data",
+    "loading":"loading..."
   },
   "header": {
     "zhoren": "中文"
@@ -15,6 +17,7 @@
   "chart": {
     "bar": "BarChart",
     "radar": "RadarChart",
-    "line": "LineCHart"
+    "line": "LineChart",
+    "pie":"PieChart"
   }
 }
