@@ -2,7 +2,7 @@
  * @Name: 封装echarts
  * @Date: 2020-01-15 13:52:10
  * @LastEditors  : mimingguang
- * @LastEditTime : 2020-01-15 17:34:49
+ * @LastEditTime : 2020-01-16 15:20:09
  -->
 <template>
   <div>
@@ -23,6 +23,7 @@
 // 例如：import 《组件名称》 from '《组件路径》';
 import echarts from 'echarts';
 import _ from 'lodash';
+import { mapGetters } from 'vuex'
 import Ecolors from './chartsColors'
 export default {
   // import引入的组件需要注入到对象中才能使用
@@ -49,6 +50,7 @@ export default {
   },
   // 监听属性 类似于data概念
   computed: {
+    ...mapGetters(['sidebar']),
     isChartVisible() {
       return !this.isLoading && !this.isOptionAbnormal;
     }
@@ -57,6 +59,11 @@ export default {
   watch: {
     options(options) {
       this.checkAndSetOption();
+    },
+    'sidebar.opened'() {
+      setTimeout(() => {
+        this.myEcharts.resize();
+      }, 500);
     }
   },
   // 生命周期 - 创建完成（可以访问当前this实例）

@@ -3,20 +3,14 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import router from '@/router';
 import store from '../store/index';
-import { install, Prototypes, Message } from 'heyui';
-import { Utils } from 'hey-utils';
 // import qs from 'qs';
 Vue.use(VueAxios, axios);
-Vue.use(install, {
-  components: { Message },
-  prototypes: Prototypes
-});
 /**
  * 提示函数
  * 禁止点击蒙层、显示一秒后关闭
  */
 const tip = msg => {
-  Message({
+  HeyUI.$Message({
     text: msg,
     duration: 1000,
     type: 'error'
@@ -61,6 +55,9 @@ const errorHandle = (status, other) => {
     case 404:
       tip('请求的资源不存在');
       break;
+    case 400:
+      tip('用户名或密码错误');
+      break;
     default:
       console.log(other);
   }
@@ -84,6 +81,7 @@ instance.interceptors.request.use(
     // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
     const token = store.state.token;
     token && (config.headers.Authorization = token);
+    config.loading && HeyUI.$Loading('加载中...');
     return config;
   },
   error => Promise.error(error)
@@ -93,11 +91,18 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   // 请求成功
   res => {
-    return res.status === 200 ? Promise.resolve(res.data) : Promise.reject(res)
+    HeyUI.$Loading.close();
+    if (res.status === 200 && res.data.code === 200) {
+      return Promise.resolve(res.data);
+    } else {
+      errorHandle(res.data.code, res.data.message)
+      return Promise.reject(res.data.message);
+    }
+    // return res.status === 200 ? Promise.resolve(res.data) : Promise.reject(res)
   },
   // 请求失败
   error => {
-    console.log(error)
+    HeyUI.$Loading.close();
     const { response } = error;
 
     errorHandle(response.status, response.data.message);

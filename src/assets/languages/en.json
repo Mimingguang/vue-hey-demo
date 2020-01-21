@@ -12,6 +12,8 @@
   "menu": {
     "dashboard": "Dashboard",
     "visualization":"Visualization",
+    "tools":"Tools",
+    "colors":"Colors",
     "test": "Test"
   },
   "chart": {

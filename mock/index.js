@@ -3,8 +3,9 @@ import { param2Obj } from '../src/utils'
 
 import user from './user'
 import chart from './chart'
+import tools from './tools'
 
-const mocks = [...user, ...chart];
+const mocks = [...user, ...chart, ...tools];
 
 // for front mock
 // please use it cautiously, it will redefine XMLHttpRequest,
@@ -41,7 +42,9 @@ export function mockXHR() {
       return Mock.mock(result)
     }
   }
-
+  Mock.setup({
+    timeout: '200-2000' // 表示响应时间介于 200 和 600 毫秒之间，默认值是'10-100'。
+  });
   for (const i of mocks) {
     Mock.mock(new RegExp(i.url), i.type || 'get', XHR2ExpressReqWrap(i.response))
   }

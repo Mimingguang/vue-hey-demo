@@ -1,5 +1,5 @@
 <template>
-  <div class="warp-container dashboard">
+  <div class="dashboard">
     <Row :space="20">
       <Cell width="14">
         <mg-panel :title="$t('chart.bar')" :loading="loading">

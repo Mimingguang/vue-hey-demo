@@ -100,6 +100,9 @@ export default {
           Utils.saveCookie('userName', res.data.userName)
           Utils.saveCookie('userImg', res.data.userImg)
           this.$router.push({ path: this.redirect || '/' })
+        }).catch((error) => {
+          this.isLoading = false
+          console.error(error)
         })
       } else {
         this.isLoading = false

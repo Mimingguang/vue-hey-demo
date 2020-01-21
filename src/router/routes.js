@@ -30,7 +30,7 @@ export const constantRoutes = [
           require(['@/views/dashboard/index'], resolve),
         meta: {
           title: 'menu.dashboard',
-          icon: 'iconfont icon-dashboard',
+          icon: 'iconfont icon-dashboard-fill',
           affix: true
           // access: ['home']
         }
@@ -54,6 +54,27 @@ export const constantRoutes = [
           require(['@/views/visualization/echarts'], resolve),
         meta: {
           title: 'Echarts'
+          // access: ['home']
+        }
+      }
+    ]
+  },
+  {
+    path: '/tools',
+    name: 'Tools',
+    component: Layout,
+    meta: {
+      title: 'menu.tools',
+      icon: 'iconfont icon-gongju2'
+      // access: ['home']
+    },
+    children: [
+      {
+        path: 'colors',
+        name: 'Colors',
+        component: resolve => require(['@/views/tools/colors'], resolve),
+        meta: {
+          title: 'menu.colors'
           // access: ['home']
         }
       }

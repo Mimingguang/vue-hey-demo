@@ -29,9 +29,10 @@ export default utils.extend({}, utils, {
         let obj = {
           icon: (item.meta && item.meta.icon) || '',
           key: item.name,
-          title: item.meta.title && item.meta.title.includes('.')
-            ? i18n.tc(item.meta.title)
-            : item.meta.title,
+          title:
+            item.meta.title && item.meta.title.includes('.')
+              ? i18n.tc(item.meta.title)
+              : item.meta.title,
           meta: item.meta,
           path: item.path
         };
@@ -65,27 +66,50 @@ export default utils.extend({}, utils, {
 
   // 2. 是否为空对象；
   isEmptyObject(option) {
-    return Object.keys(option).length === 0
+    return Object.keys(option).length === 0;
   },
 
-  // 3. 是否包含 series 键；
+  // 3.echarts options 是否包含 series 键；
   hasSeriesKey(option) {
-    return !!option['series']
+    return !!option['series'];
   },
 
-  // 4. series 是否为数组；
+  // 4.echarts options series 是否为数组；
   isSeriesArray(option) {
-    return Array.isArray(option['series'])
+    return Array.isArray(option['series']);
   },
 
-  // 5. series 数组是否为空。
+  // 5.echarts options series 数组是否为空。
   isSeriesEmpty(option) {
-    return option['series'].length === 0
+    return option['series'].length === 0;
   },
-
+  // echarts options是否合规
   isValidOption(option) {
-    return this.isObject(option) && !this.isEmptyObject(option) &&
-    this.hasSeriesKey(option) &&
-    this.isSeriesArray(option) && !this.isSeriesEmpty(option)
+    return (
+      this.isObject(option) &&
+      !this.isEmptyObject(option) &&
+      this.hasSeriesKey(option) &&
+      this.isSeriesArray(option) &&
+      !this.isSeriesEmpty(option)
+    );
+  },
+  // hex转rgba
+  hexToRgba(hex, opacity) {
+    var RGBA =
+      'rgba(' +
+      parseInt('0x' + hex.slice(1, 3)) +
+      ',' +
+      parseInt('0x' + hex.slice(3, 5)) +
+      ',' +
+      parseInt('0x' + hex.slice(5, 7)) +
+      ',' +
+      opacity +
+      ')';
+    return {
+      red: parseInt('0x' + hex.slice(1, 3)),
+      green: parseInt('0x' + hex.slice(3, 5)),
+      blue: parseInt('0x' + hex.slice(5, 7)),
+      rgba: RGBA
+    };
   }
 });

@@ -2,7 +2,7 @@
  * @Name:
  * @Date: 2019-07-02 09:45:01
  * @LastEditors  : mimingguang
- * @LastEditTime : 2020-01-16 14:17:44
+ * @LastEditTime : 2020-01-21 10:45:05
  */
 'use strict';
 const webpack = require('webpack');
@@ -12,7 +12,6 @@ const defaultSettings = require('./src/settings.js');
 const name = defaultSettings.title || 'vue Admin Template'; // page title
 const port = 9102; // dev port
 const IS_PROD = ['production', 'test'].includes(process.env.NODE_ENV);
-
 const resolve = dir => path.join(__dirname, dir);
 const addStyleResource = rule => {
   rule
@@ -56,22 +55,32 @@ module.exports = {
     },
     after: require('./mock/mock-server.js')
   },
-  configureWebpack: {
-    name: name,
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, 'src'),
-        components: path.resolve(__dirname, 'src/components/')
-      }
-    },
-    plugins: [
+  configureWebpack: config => {
+    config.name = name
+    config.plugins.push(
       new webpack.ProvidePlugin({
         Utils: [path.resolve(__dirname, 'src/utils/util'), 'default'],
         HeyUI: 'heyui'
       })
-    ]
+    );
+    // 开启gzip压缩
+    // if (IS_PROD) {
+    //   config.plugins.push(
+    //     new CompressionWebpackPlugin({
+    //       filename: '[path].gz[query]',
+    //       algorithm: 'gzip',
+    //       test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+    //       threshold: 10240, // 只有大小大于该值的资源会被处理 10240
+    //       minRatio: 0.8, // 只有压缩率小于这个值的资源才会被处理
+    //       deleteOriginalAssets: true // 删除原文件
+    //     })
+    //   );
+    // }
   },
   chainWebpack: config => {
+    config.resolve.alias
+      .set('@', path.resolve(__dirname, 'src'))
+      .set('components', path.resolve(__dirname, 'src/components/'));
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
     types.forEach(type =>
       addStyleResource(config.module.rule('less').oneOf(type))

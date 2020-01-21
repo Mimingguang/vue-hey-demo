@@ -20,6 +20,13 @@
       "unicode_decimal": 58925
     },
     {
+      "icon_id": "1916570",
+      "name": "工具",
+      "font_class": "tool",
+      "unicode": "ea0d",
+      "unicode_decimal": 59917
+    },
+    {
       "icon_id": "4765721",
       "name": "check-circle",
       "font_class": "check-circle",
@@ -3672,6 +3679,34 @@
       "font_class": "zhihu-square-fill",
       "unicode": "e9be",
       "unicode_decimal": 59838
+    },
+    {
+      "icon_id": "5073182",
+      "name": "工具",
+      "font_class": "gongju",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "5073229",
+      "name": "工具",
+      "font_class": "gongju1",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "5483226",
+      "name": "工具",
+      "font_class": "gongju2",
+      "unicode": "e6be",
+      "unicode_decimal": 59070
+    },
+    {
+      "icon_id": "5714723",
+      "name": "工具",
+      "font_class": "gongju3",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
     },
     {
       "icon_id": "5756279",

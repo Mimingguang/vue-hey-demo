@@ -12,6 +12,8 @@
   "menu": {
     "dashboard": "仪表盘",
     "visualization":"可视化",
+    "tools":"工具",
+    "colors":"颜色",
     "test": "测试"
   },
   "chart": {

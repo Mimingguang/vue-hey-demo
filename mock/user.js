@@ -30,6 +30,12 @@ export default [
     type: 'post',
     response: config => {
       const { username } = config.body
+      if (username !== 'admin') {
+        return {
+          code: 400,
+          message: '用户名或密码错误！'
+        };
+      }
       const token = tokens[username]
 
       // mock error
@@ -41,7 +47,7 @@ export default [
       }
 
       return {
-        code: 20000,
+        code: 200,
         data: {
           userImg: Mock.mock('@dataImage("50x50", "Hey")'),
           userName: Mock.mock('@first()'),
