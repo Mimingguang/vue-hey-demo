@@ -77,6 +77,15 @@ export const constantRoutes = [
           title: 'menu.colors'
           // access: ['home']
         }
+      },
+      {
+        path: 'animation',
+        name: 'Animation',
+        component: resolve => require(['@/views/tools/animation'], resolve),
+        meta: {
+          title: 'menu.animation'
+          // access: ['home']
+        }
       }
     ]
   },

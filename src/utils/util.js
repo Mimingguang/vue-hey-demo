@@ -2,6 +2,7 @@ import utils from 'hey-utils';
 import { forEach, hasOneOf } from '@/utils/tools';
 import { i18n } from '@/assets/languages';
 const rclass = /[\t\r\n\f]/g;
+console.log(JSON.stringify(utils))
 export default utils.extend({}, utils, {
   getClass(elem) {
     return (elem.getAttribute && elem.getAttribute('class')) || '';
