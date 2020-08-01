@@ -137,11 +137,11 @@ module.exports = {
   },
 
   css: {
-    extract: IS_PROD,
-    loaderOptions: {
-      less: {
-        javascriptEnabled: true
-      }
-    }
+    extract: IS_PROD
+    // loaderOptions: {
+    //   less: {
+    //     javascriptEnabled: true
+    //   }
+    // }
   }
 };
