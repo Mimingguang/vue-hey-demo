@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@antv/g2plot": "^1.1.19",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "echarts": "^4.8.0",
     "hey-utils": "^1.0.2",
     "heyui": "^1.26.0",
