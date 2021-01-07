@@ -19,7 +19,7 @@
         valid-on-change
       >
         <FormItem label="用户名" prop="name">
-          <template v-slot:label><i class="h-icon-user" /> 用户名</template>
+          <template #label><i class="h-icon-user" /> 用户名</template>
           <input v-model="model.name" type="text">
         </FormItem>
         <FormItem icon="h-icon-complete" label="密码" prop="password">
