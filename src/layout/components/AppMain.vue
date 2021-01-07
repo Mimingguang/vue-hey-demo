@@ -25,9 +25,9 @@ export default {
 
 <style lang='less' scoped>
 //@import url(); 引入公共css类
-.app-main{
-    padding: 20px 20px 0;
-    min-height: ~"calc(100% - 90px)";
-    // overflow: auto;
+.app-main {
+  padding: 20px 20px 0;
+  min-height: ~"calc(100% - 90px)";
+  // overflow: auto;
 }
 </style>

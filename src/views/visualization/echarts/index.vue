@@ -1,6 +1,6 @@
 <template>
   <div class="warp-container echart-tabs">
-    <Tabs :value="selected" :datas="params" class-name="h-tabs-card" :title-name="$t()" @change="change">
+    <Tabs :datas="params" :title-name="$t()" :value="selected" class-name="h-tabs-card" @change="change">
       <template slot="item" slot-scope="{tab}"><span>{{ $t(tab.title) }}</span></template>
     </Tabs>
     <component :is="selected" />
@@ -13,6 +13,7 @@
 import VPie from './pie'
 import VBar from './bar'
 import VLine from './line'
+
 export default {
 // import引入的组件需要注入到对象中才能使用
   components: { VPie, VBar, VLine },
@@ -33,7 +34,7 @@ export default {
           title: 'chart.line'
         }
       ]
-    };
+    }
   },
   // 监听属性 类似于data概念
   computed: {
@@ -50,27 +51,36 @@ export default {
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
   },
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {},
+  beforeCreate() {
+  }, // 生命周期 - 创建之前
+  beforeMount() {
+  }, // 生命周期 - 挂载之前
+  beforeUpdate() {
+  }, // 生命周期 - 更新之前
+  updated() {
+  }, // 生命周期 - 更新之后
+  beforeDestroy() {
+  }, // 生命周期 - 销毁之前
+  destroyed() {
+  }, // 生命周期 - 销毁完成
+  activated() {
+  },
   // 方法集合
   methods: {
     change(data) {
-      this.$router.push({ query: {
-        type: data.key
-      }})
+      this.$router.push({
+        query: {
+          type: data.key
+        }
+      })
     }
   } // 如果页面有keep-alive缓存功能，这个函数会触发
 }
 </script>
 <style lang='less' scoped>
 //@import url(); 引入公共css类
-.echart-tabs{
-  .h-tabs{
+.echart-tabs {
+  .h-tabs {
     margin-bottom: 20px;
   }
 }

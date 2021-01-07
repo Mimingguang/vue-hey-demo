@@ -40,6 +40,7 @@ import {
   AppFooter,
   BackTop
 } from './components'
+
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: { AppSider, AppMain, NavBar, AppLogo, AppFooter, BackTop },
@@ -73,16 +74,25 @@ export default {
   // 监控data中的数据变化
   watch: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+  },
   // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {},
+  mounted() {
+  },
+  beforeCreate() {
+  }, // 生命周期 - 创建之前
+  beforeMount() {
+  }, // 生命周期 - 挂载之前
+  beforeUpdate() {
+  }, // 生命周期 - 更新之前
+  updated() {
+  }, // 生命周期 - 更新之后
+  beforeDestroy() {
+  }, // 生命周期 - 销毁之前
+  destroyed() {
+  }, // 生命周期 - 销毁完成
+  activated() {
+  },
   // 方法集合
   methods: {
     toggleSideBar() {
@@ -95,14 +105,17 @@ export default {
 //@import url(); 引入公共css类
 .layout-container {
   height: 100vh;
+
   &.mobile.openSidebar {
     position: fixed;
     top: 0;
   }
+
   .sider-container {
     overflow-x: hidden;
     box-shadow: 1px 1px 10px rgba(200, 200, 200, 0.2);
   }
+
   &.hideSidebar {
     .sider-container {
       width: 70px;
@@ -113,16 +126,19 @@ export default {
       z-index: 2;
     }
   }
+
   .app-warp {
     overflow: auto;
   }
 }
+
 .h-layout.h-layout-sider-fixed.hideSidebar {
   padding-left: 70px;
 }
+
 .h-layout.h-layout-has-sider.hideSidebar
-  > .h-layout-header-fixed
-  > .h-layout-header {
+> .h-layout-header-fixed
+> .h-layout-header {
   left: 70px;
 }
 </style>

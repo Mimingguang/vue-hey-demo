@@ -4,23 +4,23 @@
  * @LastEditors  : mimingguang
  * @LastEditTime : 2020-01-21 10:45:05
  */
-'use strict';
-const webpack = require('webpack');
-const path = require('path');
-const defaultSettings = require('./src/settings.js');
+'use strict'
+const webpack = require('webpack')
+const path = require('path')
+const defaultSettings = require('./src/settings.js')
 
-const name = defaultSettings.title || 'vue Admin Template'; // page title
-const port = 9102; // dev port
-const IS_PROD = ['production', 'test'].includes(process.env.NODE_ENV);
-const resolve = dir => path.join(__dirname, dir);
+const name = defaultSettings.title || 'vue Admin Template' // page title
+const port = 9102 // dev port
+const IS_PROD = ['production', 'test'].includes(process.env.NODE_ENV)
+const resolve = dir => path.join(__dirname, dir)
 const addStyleResource = rule => {
   rule
     .use('style-resource')
     .loader('style-resources-loader')
     .options({
       patterns: [path.resolve(__dirname, './src/assets/css/var.less')]
-    });
-};
+    })
+}
 
 module.exports = {
   // 补全文件路径
@@ -62,7 +62,7 @@ module.exports = {
         Utils: [path.resolve(__dirname, 'src/utils/util'), 'default'],
         HeyUI: 'heyui'
       })
-    );
+    )
     // 开启gzip压缩
     // if (IS_PROD) {
     //   config.plugins.push(
@@ -80,24 +80,24 @@ module.exports = {
   chainWebpack: config => {
     config.resolve.alias
       .set('@', path.resolve(__dirname, 'src'))
-      .set('components', path.resolve(__dirname, 'src/components/'));
-    const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
+      .set('components', path.resolve(__dirname, 'src/components/'))
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     types.forEach(type =>
       addStyleResource(config.module.rule('less').oneOf(type))
-    );
+    )
     // set preserveWhitespace
     config.module
       .rule('vue')
       .use('vue-loader')
       .loader('vue-loader')
       .tap(options => {
-        options.compilerOptions.preserveWhitespace = true;
-        return options;
+        options.compilerOptions.preserveWhitespace = true
+        return options
       })
-      .end();
+      .end()
     config.when(process.env.NODE_ENV === 'development', config =>
       config.devtool('cheap-source-map')
-    );
+    )
     config.when(process.env.NODE_ENV !== 'development', config => {
       config
         .plugin('ScriptExtHtmlWebpackPlugin')
@@ -108,7 +108,7 @@ module.exports = {
             inline: /runtime\..*\.js$/
           }
         ])
-        .end();
+        .end()
       config.optimization.splitChunks({
         chunks: 'all',
         cacheGroups: {
@@ -131,9 +131,9 @@ module.exports = {
             reuseExistingChunk: true
           }
         }
-      });
-      config.optimization.runtimeChunk('single');
-    });
+      })
+      config.optimization.runtimeChunk('single')
+    })
   },
 
   css: {
@@ -144,4 +144,4 @@ module.exports = {
     //   }
     // }
   }
-};
+}

@@ -1,4 +1,5 @@
-import Mock from 'mockjs';
+import Mock from 'mockjs'
+
 export default [
   {
     url: '/chart/pie',
@@ -12,11 +13,11 @@ export default [
             value: '@integer(0, 1000)'
           }
         ]
-      });
+      })
       return {
         code: 200,
         data: { ...data }
-      };
+      }
     }
   },
   {
@@ -33,11 +34,11 @@ export default [
             'data|7': ['@integer(0, 1000)']
           }
         ]
-      });
+      })
       return {
         code: 200,
         data: { ...data }
-      };
+      }
     }
   }
-];
+]

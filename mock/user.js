@@ -1,4 +1,5 @@
-import Mock from 'mockjs';
+import Mock from 'mockjs'
+
 const tokens = {
   admin: {
     token: 'admin-token'
@@ -34,7 +35,7 @@ export default [
         return {
           code: 400,
           message: '用户名或密码错误！'
-        };
+        }
       }
       const token = tokens[username]
 
@@ -54,7 +55,7 @@ export default [
           token,
           userId: Mock.mock('@id()')
         }
-      };
+      }
     }
   },
 

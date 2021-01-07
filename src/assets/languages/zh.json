@@ -3,24 +3,26 @@
     "title": "标题",
     "year": "年",
     "more": "更多",
-    "noData":"暂无数据",
-    "loading":"加载中..."
+    "noData": "暂无数据",
+    "loading": "加载中..."
   },
   "header": {
-    "zhoren": "English"
+    "zhoren": "English",
+    "search": "全局搜索...",
+    "personal": "personal"
   },
   "menu": {
     "dashboard": "仪表盘",
-    "visualization":"可视化",
-    "tools":"工具",
-    "colors":"颜色",
-    "animation":"动画",
+    "visualization": "可视化",
+    "tools": "工具",
+    "colors": "颜色",
+    "animation": "动画",
     "test": "测试"
   },
   "chart": {
     "bar": "柱状图",
     "radar": "雷达图",
     "line": "折线图",
-    "pie":"饼图"
+    "pie": "饼图"
   }
 }

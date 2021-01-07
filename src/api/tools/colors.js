@@ -1,4 +1,4 @@
-import http from '@/utils/http';
+import http from '@/utils/http'
 
 export function getColors(data) {
   return http({
@@ -6,5 +6,5 @@ export function getColors(data) {
     method: 'post',
     data,
     loading: true
-  });
+  })
 }

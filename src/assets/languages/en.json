@@ -3,24 +3,26 @@
     "title": "Title",
     "year": "Year",
     "more": "More",
-    "noData":"No data",
-    "loading":"loading..."
+    "noData": "No data",
+    "loading": "loading..."
   },
   "header": {
-    "zhoren": "中文"
+    "zhoren": "中文",
+    "search": "Global search...",
+    "personal": "个人信息"
   },
   "menu": {
     "dashboard": "Dashboard",
-    "visualization":"Visualization",
-    "tools":"Tools",
-    "colors":"Colors",
-    "animation":"Animation",
+    "visualization": "Visualization",
+    "tools": "Tools",
+    "colors": "Colors",
+    "animation": "Animation",
     "test": "Test"
   },
   "chart": {
     "bar": "BarChart",
     "radar": "RadarChart",
     "line": "LineChart",
-    "pie":"PieChart"
+    "pie": "PieChart"
   }
 }

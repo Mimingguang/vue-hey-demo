@@ -1,6 +1,5 @@
-
 /* Layout */
-import Layout from '@/layout';
+import Layout from '@/layout'
 
 export const constantRoutes = [
   {
@@ -9,12 +8,7 @@ export const constantRoutes = [
     component: resolve => require(['@/views/login/index'], resolve),
     hidden: true
   },
-  {
-    path: '/refresh',
-    name: 'Refresh',
-    component: resolve => require(['@/views/error/refresh'], resolve),
-    hidden: true
-  },
+
   {
     path: '/',
     component: Layout,
@@ -118,7 +112,13 @@ export const constantRoutes = [
         }
       }
     ]
-  }
-];
+  },
+  {
+    path: '*',
+    name: 'Error',
+    component: resolve => require(['@/views/error/index'], resolve),
+    hidden: true
+  }// 全不匹配的情况下，返回404，路由按顺序从上到下，依次匹配。最后一个*能匹配全部
+]
 
-export default constantRoutes;
+export default constantRoutes

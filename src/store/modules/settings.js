@@ -12,7 +12,7 @@ const state = {
 const mutations = {
   CHANGE_SETTING: (state, { key, value }) => {
     if (Object.prototype.hasOwnProperty.call(state, key)) {
-      state[key] = value;
+      state[key] = value
     }
   }
 }

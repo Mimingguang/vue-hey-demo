@@ -2,21 +2,21 @@
   <div class="dashboard">
     <Row :space="20">
       <Cell width="14">
-        <mg-panel :title="$t('chart.bar')" :loading="loading">
+        <mg-panel :loading="loading" :title="$t('chart.bar')">
           <div slot="body">
             <div id="bar" class="chart" />
           </div>
         </mg-panel>
       </Cell>
       <Cell width="10">
-        <mg-panel :title="$t('chart.radar')" :loading="loading">
+        <mg-panel :loading="loading" :title="$t('chart.radar')">
           <div slot="body">
             <div id="radar" class="chart" />
           </div>
         </mg-panel>
       </Cell>
       <Cell width="24">
-        <mg-panel :title="$t('chart.line')" :loading="loading">
+        <mg-panel :loading="loading" :title="$t('chart.line')">
           <div slot="body">
             <div id="line" class="chart" />
           </div>
@@ -29,8 +29,9 @@
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-import MgPanel from 'components/MgPanel';
-import { Bar, Radar, Line } from '@antv/g2plot';
+import MgPanel from 'components/MgPanel'
+import { Bar, Radar, Line } from '@antv/g2plot'
+
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: { MgPanel },
@@ -41,43 +42,51 @@ export default {
       BarPlot: null,
       RadarPlot: null,
       LinePlot: null
-    };
+    }
   },
   // 监听属性 类似于data概念
   computed: {
     languages() {
-      return this.$store.getters.languages;
+      return this.$store.getters.languages
     }
   },
   // 监控data中的数据变化
   watch: {
     languages(val) {
-      this.init();
+      this.init()
     }
   },
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+  },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    this.init();
+    this.init()
   },
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {},
+  beforeCreate() {
+  }, // 生命周期 - 创建之前
+  beforeMount() {
+  }, // 生命周期 - 挂载之前
+  beforeUpdate() {
+  }, // 生命周期 - 更新之前
+  updated() {
+  }, // 生命周期 - 更新之后
+  beforeDestroy() {
+  }, // 生命周期 - 销毁之前
+  destroyed() {
+  }, // 生命周期 - 销毁完成
+  activated() {
+  },
   // 方法集合
   methods: {
     init() {
-      const arr = ['BarPlot', 'RadarPlot', 'LinePlot'];
+      const arr = ['BarPlot', 'RadarPlot', 'LinePlot']
       arr.forEach(item => {
-        this[`get${item}`](this[item]);
-      });
+        this[`get${item}`](this[item])
+      })
       setTimeout(() => {
-        this.loading = false;
-      }, 1000);
+        this.loading = false
+      }, 1000)
     },
     getBarPlot(flag) {
       const data = [
@@ -86,19 +95,19 @@ export default {
         { year: `1956 ${this.$t('common.year')}`, sales: 61 },
         { year: `1957 ${this.$t('common.year')}`, sales: 145 },
         { year: `1958 ${this.$t('common.year')}`, sales: 48 }
-      ];
+      ]
 
       if (flag) {
-        this.BarPlot.changeData(data);
+        this.BarPlot.changeData(data)
       } else {
         this.BarPlot = new Bar('bar', {
           data,
           xField: 'sales',
           yField: 'year',
           colorField: 'year'
-        });
+        })
 
-        this.BarPlot.render();
+        this.BarPlot.render()
       }
     },
     getRadarPlot(flag) {
@@ -203,10 +212,10 @@ export default {
           user: 'b',
           score: 60
         }
-      ];
+      ]
 
       if (flag) {
-        this.RadarPlot.changeData(data);
+        this.RadarPlot.changeData(data)
       } else {
         this.RadarPlot = new Radar(document.getElementById('radar'), {
           data,
@@ -216,9 +225,9 @@ export default {
           line: {
             visible: true
           }
-        });
+        })
 
-        this.RadarPlot.render();
+        this.RadarPlot.render()
       }
     },
     getLinePlot(flag) {
@@ -448,10 +457,10 @@ export default {
           type: 'bill',
           value: 176
         }
-      ];
+      ]
 
       if (flag) {
-        this.LinePlot.changeData(data);
+        this.LinePlot.changeData(data)
       } else {
         this.LinePlot = new Line(document.getElementById('line'), {
           padding: 'auto',
@@ -471,13 +480,13 @@ export default {
           },
           seriesField: 'type',
           responsive: true
-        });
+        })
 
-        this.LinePlot.render();
+        this.LinePlot.render()
       }
     }
   } // 如果页面有keep-alive缓存功能，这个函数会触发
-};
+}
 </script>
 <style lang="less" scoped>
 //@import url(); 引入公共css类

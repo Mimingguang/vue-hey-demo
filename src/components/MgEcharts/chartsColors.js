@@ -1,5 +1,4 @@
-
-'use strict';
+'use strict'
 
 var Ecolors = {
   color: [
@@ -111,7 +110,7 @@ var Ecolors = {
     '99,132,103'
   ]
 
-};
+}
 
-export default Ecolors;
+export default Ecolors
 
